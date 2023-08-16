@@ -1,0 +1,21 @@
+server:
+  port: 8081
+# 数据库配置
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://xxxxx:3306/sxxx?useUnicode=true&characterEncoding=utf-8&SSL=true&serverTimezone=Asia/Shanghai
+    driverClassName: com.mysql.cj.jdbc.Driver
+  mail:
+    host: smtp.qq.com
+    port: 465
+    #username是邮箱地址，password需要去 邮箱设置里面开启 POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV服务
+    username: xxxx@qq.com
+    password: xxxxnaywasfjcd
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+

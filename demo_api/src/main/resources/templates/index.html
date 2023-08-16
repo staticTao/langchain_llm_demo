@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/templates/vue.min.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <template>
+        <el-input
+                placeholder="请输入内容进行搜索  [检验批次号、计划品种名称、判定时间、车牌号、判定人员]"
+                v-model="keyworks"
+                @keyup.enter.native="search()">
+            <i slot="prefix" class="el-input__icon el-icon-search"></i>
+        </el-input>
+        <el-table
+                :data="tableData"
+                style="width: 100%">
+            <el-table-column
+                    prop="check_number"
+                    label="检验批次号"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="project_plan_name"
+                    label="计划品种名称"
+                    width="180">
+            </el-table-column>
+            <el-table-column
+                    prop="project_real_name"
+                    label="实际品种名称">
+            </el-table-column>
+            <el-table-column
+                    prop="low_value_name"
+                    label="低价值料型名称">
+            </el-table-column>
+            <el-table-column
+                    prop="low_value_per"
+                    label="低价值料型占比">
+            </el-table-column>
+            <el-table-column
+                    prop="is_change_judgment"
+                    label="判定结果">
+            </el-table-column>
+            <el-table-column
+                    prop="judge_location"
+                    label="判定地点">
+            </el-table-column>
+            <el-table-column
+                    prop="create_name"
+                    label="判定人员">
+            </el-table-column>
+            <el-table-column
+                    prop="license_plate"
+                    label="车牌号">
+            </el-table-column>
+            <el-table-column
+                    prop="create_time"
+                    label="判定时间">
+            </el-table-column>
+        </el-table>
+    </template>
+</div>
+<script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js!',
+            tableData: [],
+            keyworks: ''
+        },
+        created() {
+            this.getTableData();
+        },
+        mounted() {
+            this.search();
+        },
+        methods: {
+            getTableData() {
+                this.$http.get('http://localhost:8081/ScrapSteelStorage?keyWorks=' + this.keyworks).then(function (response) {
+                    console.log(response);
+                    this.tableData = response.body;
+                }, function (response) {
+                    // error callback
+                });
+            },
+            search() {
+                this.getTableData(this.keyworks);
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
