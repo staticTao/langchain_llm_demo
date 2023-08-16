@@ -1,0 +1,2 @@
+# langchain_llm_demo
+着重处理langchain的agents和tool之间的联动，打造一个类zapier的工具集
