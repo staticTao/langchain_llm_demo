@@ -375,8 +375,7 @@ if __name__ == "__main__":
                  model_name="gpt-3.5-turbo-0613")
     data_source = DataSource(llm)
     tools = [
-        # 当用户询问公司人员信息/xxx信息的时候，可以通过这个工具包进行查找（包括人员的总数）注意：每次查询的sql语句用’selecct * from table‘，不要自己选取列名查询。思考时需要联系上下文，并且不能只想到姓名，要想到这个人的所有信息。对于查询结果需要做中文替换【真实姓名：name，电话号码：telephone，身份证：id_number，家庭住址：home_address，岗位名称：post_name，部门：department】",
-
+        
         Tool(
             name="人员详细信息",
             func=data_source.query_userinfo,
